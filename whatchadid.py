@@ -56,7 +56,7 @@ if len(sys.argv) > 1:
     else:
         logfile = open(sys.argv[1])
 else:
-    logfile = open(join(expanduser('~'), 'WhatchaDoingLog.XML'))
+    logfile = open(join(expanduser('~'), 'Documents', 'WhatchaDoingLog.XML'))
 
 # Parse the log file.
 activities = bs4.BeautifulSoup(logfile).find_all('activity')

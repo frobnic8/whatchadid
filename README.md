@@ -25,6 +25,10 @@ too much time on your hands. ;)
 
 Usage
 -----
+Example usage:
+
+    ./whatchadid.py > raw_whatchadoing_data.csv
+
 whatchadid.py takes the "-h" or "--help" option to display minimal usage.
 
 If run with no arguments, it looks in the "Documents" folder of your home
@@ -33,3 +37,5 @@ instead. If the argument is "-", it reads from standard input.
 
 You can optionall change the DELIMITER constant in the code if you need a
 different delimiter.
+
+Currently, it does not support filtering and parses the entire log.

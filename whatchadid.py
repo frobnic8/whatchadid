@@ -7,44 +7,52 @@ built in export to CSV (or XLS) functionality doesn't really work.
 import bs4
 import sys
 from os.path import expanduser, join
+from logging import debug, warning
 
 # The delimiter used to separate columns in the output.
 # TODO: Add argument options to allow the use tabs instead of commas.
 DELIMITER = ','
 
 # A dictionary of raw task name to pretty task name.
-# NOTE: We use a dirty hack to split some columns in two here.
 COL_NAMES = {
     'task': 'Task',
-    'starttime': DELIMITER.join(['Start Date', 'Start Time']),
-    'submittime': DELIMITER.join(['Submit Date', 'Submit Time']),
-    'endtime': DELIMITER.join(['End Date', 'End Time']),
+    'starttime': 'Started',
+    'submittime': 'Submitted',
+    'endtime': 'Ended',
     'elapsedseconds': 'Seconds',
     'elapsedminutes': 'Minutes',
     'elapsedhours': 'Hours',
 }
 
 
-# NOTE: We use a dirty hack to split some columns in two here.
-def split_datetime(datetime_string):
-    """Convert the WhatchaDoing date time string into two columns.
-    e.g. 2013-06-07T18:10:14.000Z
+def parse_datetime(raw_value):
+    """Convert the WhatchaDoing date time string into something
+    spreadsheet friendly.
+
+    e.g. 2013-06-07T18:10:14.000Z into 2013-06-07 18:10:14
 
     """
-    return DELIMITER.join([datetime_string[0:10], datetime_string[11:19]])
+    debug('Parsing raw datetime value: ' + repr(raw_value))
+    if raw_value:
+        try:
+            return raw_value[:10] + ' ' + raw_value[11:19]
+        except:
+            warning('Could not parse datetime: ' + raw_value)
+            return raw_value
+    else:
+        return ''
 
 
-# Quote the column in doble quotes to contain any potential commas.
 def double_quote(raw_string):
+    """Quote the column in double quotes to contain any potential commas."""
     return '"%s"' % (raw_string)
 
 # A dictionary of raw task name to optional parsing functions.
-# NOTE: We use a dirty hack to split some columns in two here.
 COL_PARSERS = {
     'task': double_quote,
-    'starttime': split_datetime,
-    'submittime': split_datetime,
-    'endtime': split_datetime,
+    'starttime': parse_datetime,
+    'submittime': parse_datetime,
+    'endtime': parse_datetime,
 }
 
 # Column output order.

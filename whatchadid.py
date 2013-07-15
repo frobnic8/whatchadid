@@ -33,9 +33,15 @@ def split_datetime(datetime_string):
     """
     return DELIMITER.join([datetime_string[0:10], datetime_string[11:19]])
 
+
+# Quote the column in doble quotes to contain any potential commas.
+def double_quote(raw_string):
+    return '"%s"' % (raw_string)
+
 # A dictionary of raw task name to optional parsing functions.
 # NOTE: We use a dirty hack to split some columns in two here.
 COL_PARSERS = {
+    'task': double_quote,
     'starttime': split_datetime,
     'submittime': split_datetime,
     'endtime': split_datetime,
@@ -62,7 +68,7 @@ else:
 activities = bs4.BeautifulSoup(logfile).find_all('activity')
 
 # Create a header row
-print DELIMITER.join([COL_NAMES[col] for col in COL_ORDER])
+print DELIMITER.join(['"%s"' % (COL_NAMES[col]) for col in COL_ORDER])
 
 # Create a row from each activity record.
 for activity in activities:

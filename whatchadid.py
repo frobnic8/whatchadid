@@ -9,6 +9,8 @@ import sys
 from os.path import expanduser, join
 from logging import debug, warning
 
+__version__ = "0.5.0"
+
 # The delimiter used to separate columns in the output.
 # TODO: Add argument options to allow the use tabs instead of commas.
 DELIMITER = ','
@@ -59,31 +61,35 @@ COL_PARSERS = {
 COL_ORDER = ['task', 'starttime', 'submittime', 'endtime', 'elapsedseconds',
              'elapsedminutes', 'elapsedhours']
 
-# Use the default file location
-if len(sys.argv) > 1:
-    if sys.argv[1].lower() in ('-h', '--help', '-?'):
-        print 'Create an actual CSV file from a WhatchaDoingLog.XML file'
-        print 'usage: %s [log_file]'
-        sys.exit()
-    if sys.argv[1] == '-':
-        logfile = sys.stdin
+def main():
+    # Use the default file location
+    if len(sys.argv) > 1:
+        if sys.argv[1].lower() in ('-h', '--help', '-?'):
+            print 'Create an actual CSV file from a WhatchaDoingLog.XML file'
+            print 'usage: %s [log_file]'
+            sys.exit()
+        if sys.argv[1] == '-':
+            logfile = sys.stdin
+        else:
+            logfile = open(sys.argv[1])
     else:
-        logfile = open(sys.argv[1])
-else:
-    logfile = open(join(expanduser('~'), 'Documents', 'WhatchaDoingLog.XML'))
+        logfile = open(join(expanduser('~'), 'Documents', 'WhatchaDoingLog.XML'))
 
-# Parse the log file.
-activities = bs4.BeautifulSoup(logfile).find_all('activity')
+    # Parse the log file.
+    activities = bs4.BeautifulSoup(logfile).find_all('activity')
 
-# Create a header row
-print DELIMITER.join(['"%s"' % (COL_NAMES[col]) for col in COL_ORDER])
+    # Create a header row
+    print DELIMITER.join(['"%s"' % (COL_NAMES[col]) for col in COL_ORDER])
 
-# Create a row from each activity record.
-for activity in activities:
-    row = []
-    for col in COL_ORDER:
-        raw_value = activity.find(col).text
-        if col in COL_PARSERS:
-            raw_value = COL_PARSERS[col](raw_value)
-        row.append(raw_value)
-    print DELIMITER.join(row)
+    # Create a row from each activity record.
+    for activity in activities:
+        row = []
+        for col in COL_ORDER:
+            raw_value = activity.find(col).text
+            if col in COL_PARSERS:
+                raw_value = COL_PARSERS[col](raw_value)
+            row.append(raw_value)
+        print DELIMITER.join(row)
+
+if __name__ == '__main__':
+    main()

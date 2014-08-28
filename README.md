@@ -1,33 +1,35 @@
-whatchadid.py
-=============
+whatchadid
+==========
 
 Parse a WhatchDoingLog.XML into a CSV file to standard out.
 
 The default export as CSV or XLS from WhatchaDoing is broken. This processes
 the log file using BeautifulSoup 4 to produce a CSV.
 
-Installation
-------------
-If you don't have BeautifulSoup 4, run:
+Local installation
+------------------
 
-    pip install bs4
+The whatchadid tool is now available in a nice egg package.
 
-Or, if you aren't using virtualenv for example, try:
+If you've never installed python stuff before, this will probably be the
+terminal commands you want to run: (This will prompt you for your login
+password)
 
-    sudo pip install bs4
+    sudo easy_install pip
+    sudo pip install --upgrade setuptools
+    sudo pip install git+https://github.va.opower.it/erskin-cherry/whatchadid
 
-If you don't have pip, pester Erskin or go here:
+To test your installation, run:
 
-    http://www.pip-installer.org/en/latest/installing.html
+    whatchadid --help
 
-Alternatively, feel free to rewrite this to not need BeautifulSoup if you have
-too much time on your hands. ;)
+If you are still having problems, just let Erskin know and he'll help you out.
 
 Usage
 -----
 Example usage:
 
-    ./whatchadid.py > raw_whatchadoing_data.csv
+    ./whatchadid > raw_whatchadoing_data.csv
 
 whatchadid.py takes the "-h" or "--help" option to display minimal usage.
 

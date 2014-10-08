@@ -29,7 +29,7 @@ Usage
 -----
 Example usage:
 
-    ./whatchadid > raw_whatchadoing_data.csv
+    whatchadid > raw_whatchadoing_data.csv
 
 whatchadid.py takes the "-h" or "--help" option to display minimal usage.
 
@@ -37,7 +37,12 @@ If run with no arguments, it looks in the "Documents" folder of your home
 directory. If the given a single argument, it reads that as the log file
 instead. If the argument is "-", it reads from standard input.
 
-You can optionall change the DELIMITER constant in the code if you need a
+You can optionally change the DELIMITER constant in the code if you need a
 different delimiter.
 
 Currently, it does not support filtering and parses the entire log.
+
+Known Deficiencies
+------------------
+
+This thing really deserves a decent command line parser. I'll work on that.

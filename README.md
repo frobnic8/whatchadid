@@ -3,8 +3,14 @@ whatchadid
 
 Parse a WhatchDoingLog.XML into a CSV file to standard out.
 
-The default export as CSV or XLS from WhatchaDoing is broken. This processes
-the log file using BeautifulSoup 4 to produce a CSV.
+The time tracking tool WhatchaDoing sucks, but it sucks less than its peers.
+The default export as CSV or XLS from WhatchaDoing is broken. This tool
+processes the raw WhatchaDoing log file (using BeautifulSoup 4) to produce a
+working CSV you can load into a spreadsheet program.
+
+You can find the WhatchaDoing time tracking software here:
+
+    http://www.fish-bytes.com/whatchadoing/
 
 Local installation
 ------------------

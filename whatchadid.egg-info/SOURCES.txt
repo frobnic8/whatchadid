@@ -1,0 +1,8 @@
+setup.py
+whatchadid.py
+bin/whatchadid
+whatchadid.egg-info/PKG-INFO
+whatchadid.egg-info/SOURCES.txt
+whatchadid.egg-info/dependency_links.txt
+whatchadid.egg-info/requires.txt
+whatchadid.egg-info/top_level.txt

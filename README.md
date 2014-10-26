@@ -15,15 +15,21 @@ You can find the WhatchaDoing time tracking software here:
 Local installation
 ------------------
 
-The whatchadid tool is now available in a nice egg package.
+The whatchadid tool is now available in a nice wheel package.
 
-If you've never installed python stuff before, this will probably be the
-terminal commands you want to run: (This will prompt you for your login
-password)
+If that doesn't mean anything to you and you've never installed python
+stuff before, these will probably be the terminal commands you want to run:
+
+    easy_install pip
+    pip install --upgrade setuptools
+    pip install git+https://github.com/frobnic8/whatchadid
+
+If those fail, and this is your personal computer, you can try it again
+with a little more poweful permissions: (This will prompt you for your login password)
 
     sudo easy_install pip
     sudo pip install --upgrade setuptools
-    sudo pip install git+https://github.va.opower.it/erskin-cherry/whatchadid
+    sudo pip install git+https://github.com/frobnic8/whatchadid
 
 To test your installation, run:
 

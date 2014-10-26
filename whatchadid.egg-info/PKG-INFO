@@ -1,12 +1,12 @@
 Metadata-Version: 1.1
 Name: whatchadid
-Version: 0.5.0
+Version: 0.5.1
 Summary: Perform the CSV export for WhatchaDoing but actually work
-Home-page: https://github.va.opower.it/erskin-cherry/whatchadid
+Home-page: https://github.com/frobnic8/whatchadid
 Author: Erskin Cherry
-Author-email: erskin.cherry@opower.com
+Author-email: erskin@eldritch.org
 License: UNKNOWN
-Download-URL: https://github.va.opower.it/erskin-cherry/whatchadid/tree/master/dist
+Download-URL: https://github.com/frobnic8/whatchadid/tree/master/dist
 Description: whatchadid
         ==========
         

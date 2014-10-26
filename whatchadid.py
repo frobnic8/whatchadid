@@ -9,7 +9,8 @@ import sys
 from os.path import expanduser, join
 from logging import debug, warning
 
-__version__ = "0.5.0"
+__author__ = 'erskin@eldritch.org'
+__version__ = "0.5.1"
 
 # The delimiter used to separate columns in the output.
 # TODO: Add argument options to allow the use tabs instead of commas.
